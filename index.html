@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Envelope - 4 Cards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #ffe4ec 10%, #ffc1d8 90%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    .envelope {
+      width: 150px;
+      height: 100px;
+      background: linear-gradient(145deg, #ff7ba9, #ff4f81);
+      border-radius: 20px;
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Parisienne', cursive;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+      z-index: 10;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .cards {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+      z-index: 10;
+    }
+
+    .card-container {
+      width: 230px;
+      height: 300px;
+      perspective: 1000px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      padding: 20px;
+    }
+
+    .card-front {
+      background: #ffffffcc;
+    }
+
+    .card-front input {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      text-align: center;
+    }
+
+    .card-front button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff4081;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card-front button:hover {
+      background-color: #f50057;
+    }
+
+    .card-back {
+      background: #ffccde;
+      transform: rotateY(180deg);
+      font-family: 'Parisienne', cursive;
+      font-size: 16px;
+      color: #c2185b;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Flying hearts animation */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4081;
+      animation: float 10s infinite ease-in;
+      font-size: 20px;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="envelope" onclick="openEnvelope()">💌 Open Me</div>
+
+  <div class="cards" id="cards">
+    <div class="card-container">
+      <div class="card" id="card1">
+        <div class="card-front">
+          <input type="password" id="pwd1" placeholder="Enter password" />
+          <button onclick="checkPassword(1)">Unlock</button>
+        </div>
+        <div class="card-back">
+          Priya netho e visayam direct gane chepdam anukuna but dairyam saripoledhu priya present niku na nunchi vasthuna love respect care adhi alne jeevithantam vasthundi mi amma degara dorkina prema lane swachamanina prema niku esthanu jeevithantam niku thoduga vuntanu next card lo raji kosam rasanu chaduvu❤️
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card" id="card2">
+        <div class="card-front">
+          <input type="password" id="pwd2" placeholder="Enter password" />
+          <button onclick="checkPassword(2)">Unlock</button>
+        </div>
+        <div class="card-back">
+          Nannu chesukunte nuvu naku 1st priority evvali ana swardam naku ledhu raji ninnu mi amma la chusukuntundhi ah visayam kuda telusu nennu nizanga ekkada hurt avuthanu ante repu podhuna nuvu nannu oka chesina nuvu raji kanna ekkuva priority naku esthe appudu nennu feel avuthanu eppudiki aina raji tarvata nennu next card lo reality ante ento vuntundhi chaduvu❤️
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card" id="card3">
+        <div class="card-front">
+          <input type="password" id="pwd3" placeholder="Enter password" />
+          <button onclick="checkPassword(3)">Unlock</button>
+        </div>
+        <div class="card-back">
+          Ganesh ni chesukuntanu ana naku a problm ledhu kani reality enti ante friend ki husband ki chaala theda vuntundhi nuvu a decision tesukuna allochinchu tesuko taravata nuvuu suffer avvakudadu last card chaduvu adhi na kosam💞
+        </div>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card" id="card4">
+        <div class="card-front">
+          <input type="password" id="pwd4" placeholder="Enter password" />
+          <button onclick="checkPassword(4)">Unlock</button>
+        </div>
+        <div class="card-back">
+          nuvu evarini chesukuna happy ga vundu jeevithantam nennu kuda happy ga na e life ni single ga lead chesasthanu sorry ra nuvu kakunda inko ammayini na pakkana think cheyalenu nuvu yes chepthe nitho brathukuthanu lekapothe ni memories tho brathukuthanu💖
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const passwords = {
+      1: 'rose1',
+      2: 'rose2',
+      3: 'rose3',
+      4: 'rose4'
+    };
+
+    function openEnvelope() {
+      document.getElementById("cards").style.display = "flex";
+    }
+
+    function checkPassword(cardNum) {
+      const input = document.getElementById(`pwd${cardNum}`);
+      if (input.value === passwords[cardNum]) {
+        document.getElementById(`card${cardNum}`).classList.add('flipped');
+      } else {
+        alert("Wrong password!");
+      }
+    }
+
+    // Floating hearts animation
+    const heartContainer = document.getElementById("hearts");
+    const emojis = ["❤️", "💖", "💘", "💕", "💓"];
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.style.fontSize = 16 + Math.random() * 30 + "px";
+      heartContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }, 400);
+  </script>
+</body>
+</html>
